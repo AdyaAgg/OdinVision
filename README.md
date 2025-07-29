@@ -1,0 +1,211 @@
+# OdinVision: Enhancing Art Perception for the Visually Impaired
+
+OdinVision is a multimodal system designed to enhance the art-viewing experience for individuals with visual impairments using computer vision, depth map generation, and real-time haptic and auditory feedback.
+
+This repository documents a complete, low-cost, explainable, and interactive system for **experiencing 2D visual art through sound and touch**.
+
+[![Watch the demo video](https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg)]
+---
+
+## Workshop Presentation
+
+This project, was presented at the **HCI Across Borders Workshop** at the **ACM CHI Conference on Human Factors in Computing Systems (CHI 2025)**.
+
+![CHI 2025 Poster](images/poster.png)
+
+**Event**: HCI Across Borders Workshop
+**Conference**: CHI 2025  
+**Location**: Yokohama, Japan  
+
+## Problem Statement
+
+Traditional artwork is inherently visual and largely inaccessible to visually impaired individuals. Current solutions—bas-reliefs, tactile graphics, and verbal descriptions—lack fidelity, interactivity, or completeness.
+
+**OdinVision addresses this gap by:**
+- Mapping color to audio cues
+- Translating depth into vibrations
+- Tracking finger motion in real-time
+- Supporting multimodal user interaction with conversational AI
+
+## Project Structure
+
+├── assets/                      # Sample input painting, depth map, and color map images
+├── images/                      # Images for README
+├── sounds/                      # Instrumental sound files mapped to different colors
+├── app_ui.py                    # Gradio-based frontend for chatbot and image visualization
+├── arduino.ino                  # Arduino sketch for vibration motor control
+├── arduino.py                   # Python code to initialize and send PWM signals to Arduino
+├── audio.py                     # Handles voice input (STT) and audio output (TTS)
+├── chatbot.ipynb                # Kaggle notebook hosting the BLIP-2 + Mistral 7B chatbot
+├── chatbot.py                   # Interfaces with the hosted chatbot for visual question answering
+├── colour_classified.pkl        # Trained KNN model for color classification
+├── colour_training_set.csv      # Dataset used for training KNN model
+├── colour_classification.ipynb  # Notebook for training and generating the color classifier
+├── config.py                    # Global constants and environment configurations
+├── feedback.csv                 # Stores user feedback collected from the UI
+├── feedback.py                  # Handles writing feedback to CSV
+├── Presentation.pdf             # Final project presentation slides
+├── README.md                    # Project overview and documentation
+├── Report.pdf                   # Detailed final report with methodology and findings
+├── vision.py                    # Core computer vision logic: detection, depth map, and color classification
+└── main.py                      # Entry point for launching the application
+
+---
+
+## System Overview
+
+The system uses a camera to track finger movement, maps the finger position to artwork coordinates, and then:
+- Converts color at that point to a sound
+- Converts depth at that point to a vibration level
+
+### Diagram: System Architecture
+
+![System Architecture](images/system_design.jpeg)
+
+This diagram provides a high-level overview:
+- The user explores a canvas
+- A webcam captures motion
+- Software interprets depth and color to give audio-haptic feedback
+
+---
+
+## Methodology and Pipeline
+
+### Interaction Flow
+
+![Interaction Flow](images/system_overview.jpeg)
+
+- User places their finger on the surface
+- The camera captures fingertip position via OpenCV + MediaPipe
+- Coordinates are sent to:
+  - **Color model** (KNN classifier) to identify RGB and play sound
+  - **Depth model** to retrieve corresponding vibration intensity
+- Color info is sonified
+- Depth is mapped to vibration
+- The process loops as long as the user continues exploring
+
+---
+
+## Hardware & Software Stack
+
+**Software:**
+- OpenCV (image processing)
+- MediaPipe Hands (finger tracking)
+- Scikit-learn (KNN classifier for color)
+- SoundDevice (audio playback)
+- SculptOK API (depth map)
+- BLIP-2 + Mistral-7B (chatbot integration)
+- Google STT and ElevenLabs TTS
+
+**Hardware:**
+- Arduino UNO
+- ERM vibration motor
+- Webcam
+- Breadboard, jumper wires
+- Headphones
+
+---
+
+## Color and Depth Feedback
+
+### Depth Feedback Implementation
+
+![Depth Rendering + Vibration Data](images/sample_depth_map.png)
+
+The images show:
+- Left: no vibration (flat surface)
+- Right: increased vibration (detected bump near nose)
+
+The Python code captures fingertip position and sends the corresponding vibration intensity (scaled from depth value) to Arduino.
+
+### Color Sonification
+
+Color is classified using KNN on RGB values. Each color maps to a musical note:
+- Red → Guitar
+- Blue → Flute
+- Green → Congo
+- Yellow → Piano
+- Black → Saxophone
+- White → No sound
+
+---
+
+## Real-World Interaction
+
+### Live Exploration Demo
+
+![User Interaction](images/user_flow.jpg)
+
+This shows a user exploring an image on paper with a webcam above, while receiving feedback through a fingertip sensor and headphones.
+
+### Evaluation Participant
+
+![Blindfolded User with Glove](images/study_image.jpg)
+
+A participant using the glove during testing. The webcam tracks movement while the glove delivers haptic feedback. Audio is delivered via headphones.
+
+---
+
+## Chatbot Integration
+
+We incorporated a two-stage conversational AI system:
+- **BLIP-2** interprets image-question pairs for Visual Question Answering (VQA)
+- **Mistral-7B** refines the answer and provides contextually rich explanations
+
+Supported by:
+- Google Speech-to-Text (for voice input)
+- ElevenLabs Text-to-Speech (for voice output)
+
+This empowers visually impaired users to ask questions about what they are exploring and receive spoken responses.
+
+---
+
+## Performance Metrics
+
+| Component            | Metric         | Value    |
+|---------------------|----------------|----------|
+| KNN Color Classifier| Accuracy       | 97.2%    |
+|                     | F1 Score       | 0.9715   |
+| MediaPipe Hand Track| Precision      | 1.00     |
+|                     | Recall         | 0.674    |
+| STT (Google)        | Word Error Rate| ~8%      |
+| TTS (11Labs)        | MOS Score      | 4.2–4.5  |
+
+---
+
+## User Evaluation
+
+- **Participants**: 10 sighted users, blindfolded
+- **Task**: Explore artwork using system and reproduce it
+- **Findings**:
+  - Color identification was highly accurate
+  - Shape recognition was approximate
+  - 72% users preferred this over passive listening
+  - Most rated clarity of haptic feedback 3/5 or 4/5
+
+---
+
+## Limitations
+
+- ERM motors are not capable of rendering fine-grained texture
+- Evaluations were conducted on blindfolded sighted individuals
+- Color palette limited to six fixed categories
+- Lighting variations affect color classification accuracy
+
+---
+
+## Future Work
+
+- Upgrade haptics using LRAs or piezoelectric actuators
+- Sonify continuous color gradients using ambient soundscapes
+- Integrate detailed artwork metadata for learning
+- Develop museum-ready multi-user version with spatial narration
+
+---
+
+## Authors
+
+- **Adya Aggarwal** – IIIT-Delhi  
+- **Pankhuri Singh** – IIIT-Delhi  
+- **Pranav Jain** – IIIT-Delhi  
+
