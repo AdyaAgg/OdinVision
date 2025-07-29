@@ -95,7 +95,6 @@ Traditional artwork is inherently visual and largely inaccessible to visually im
 ├── colour_training_set.csv      # Dataset used for training KNN model
 ├── colour_classification.ipynb  # Notebook for training and generating the color classifier
 ├── config.py                    # Global constants and environment configurations
-├── feedback.csv                 # Stores user feedback collected from the UI
 ├── feedback.py                  # Handles writing feedback to CSV
 ├── Presentation.pdf             # Final project presentation slides
 ├── README.md                    # Project overview and documentation
