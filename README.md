@@ -6,19 +6,33 @@ This repository documents a complete, low-cost, explainable, and interactive sys
 
 **Demo Video**: [Watch on YouTube](https://youtu.be/csRf7kkVQ6w)
 
----
 
-## Workshop Presentation
+This project was presented at the **HCI Across Borders Workshop** at the **ACM CHI Conference on Human Factors in Computing Systems (CHI 2025)**.
 
-This project, was presented at the **HCI Across Borders Workshop** at the **ACM CHI Conference on Human Factors in Computing Systems (CHI 2025)**.
-
-<div align="center">
-  <img src="images/poster.png" alt="CHI 2025 Poster" width="400"/>
-</div>
-
+**Presentation Link**: [View Poster (PDF/Image)](images/poster.png)  
 **Event**: HCI Across Borders Workshop  
 **Conference**: CHI 2025  
 **Location**: Yokohama, Japan  
+
+---
+
+## Table of Contents
+
+- [Problem Statement](#problem-statement)
+- [Project Structure](#project-structure)
+- [System Overview](#system-overview)
+- [Methodology and Pipeline](#methodology-and-pipeline)
+- [Hardware & Software Stack](#hardware--software-stack)
+- [Color and Depth Feedback](#color-and-depth-feedback)
+- [Real-World Interaction](#real-world-interaction)
+- [Chatbot Integration](#chatbot-integration)
+- [Performance Metrics](#performance-metrics)
+- [User Evaluation](#user-evaluation)
+- [Limitations](#limitations)
+- [Future Work](#future-work)
+- [Authors](#authors)
+
+---
 
 ## Problem Statement
 
