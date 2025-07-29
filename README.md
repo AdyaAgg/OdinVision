@@ -1,8 +1,42 @@
 # OdinVision: Enhancing Art Perception for the Visually Impaired
 
-OdinVision is a multimodal system designed to enhance the art-viewing experience for individuals with visual impairments using computer vision, depth map generation, and real-time haptic and auditory feedback.
+- **OdinVision** is a real-time, low-cost multimodal system for enabling individuals with visual impairments to interactively explore 2D visual artwork.
+- Integrates **computer vision**, **machine learning**, and **embedded systems** into a unified, explainable interface.
+- Focuses on translating **visual data (depth and color)** into **tactile and auditory feedback**.
 
-This repository documents a complete, low-cost, explainable, and interactive system for **experiencing 2D visual art through sound and touch**.
+### Technologies Used
+
+- **Computer Vision**
+  - Uses **MediaPipe Hands** for real-time fingertip tracking.
+  - Extracts (x, y) coordinates mapped to artwork frame for interaction reference.
+
+- **Monocular Depth Estimation**
+  - Employs the **SculptOK API** to convert 2D images into pixel-wise depth maps.
+  - Normalized depth values are translated to vibration intensity for tactile feedback.
+
+- **Machine Learning: Color Classification**
+  - Implements a **K-Nearest Neighbors (KNN)** model trained on RGB samples.
+  - Classifies colors into 6 core categories.
+  - Each color is mapped to a unique **instrument and audio frequency**.
+
+- **Embedded Haptic Feedback**
+  - Uses **Arduino UNO** to control a **PWM-modulated ERM vibration motor**.
+  - Receives real-time depth input via serial communication from the host system.
+  - Delivers varying tactile sensations to the fingertip.
+
+- **Auditory Feedback**
+  - Generates real-time sound output using the Python `sounddevice` library.
+  - Audio cues correspond to detected color.
+  - Feedback delivered through **headphones** for immersive multisensory interaction.
+
+- **Explainability**
+  - Integrates **SHAP (Shapley Additive exPlanations)** for color model transparency.
+  - Provides per-sample RGB contribution insights.
+
+- **Conversational AI**
+  - Includes a multimodal chatbot using **BLIP-2** for Visual Question Answering.
+  - Uses **Mistral-7B** for natural language refinement.
+  - Supports voice interaction via **Google STT** and **ElevenLabs TTS**.
 
 **Demo Video**: [Watch on YouTube](https://youtu.be/csRf7kkVQ6w)
 
