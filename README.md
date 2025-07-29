@@ -4,11 +4,7 @@ OdinVision is a multimodal system designed to enhance the art-viewing experience
 
 This repository documents a complete, low-cost, explainable, and interactive system for **experiencing 2D visual art through sound and touch**.
 
-<div align="center">
-  <a href="https://youtu.be/csRf7kkVQ6w" target="_blank">
-    <img src="https://img.youtube.com/vi/csRf7kkVQ6w/0.jpg" alt="Watch the demo video" width="480"/>
-  </a>
-</div>
+**Demo Video**: [Watch on YouTube](https://youtu.be/csRf7kkVQ6w)
 
 ---
 
@@ -34,8 +30,29 @@ Traditional artwork is inherently visual and largely inaccessible to visually im
 - Tracking finger motion in real-time
 - Supporting multimodal user interaction with conversational AI
 
-<pre> ## Project Structure ``` ├── assets/ # Sample input painting, depth map, and color map images ├── images/ # Images for README ├── sounds/ # Instrumental sound files mapped to different colors ├── app_ui.py # Gradio-based frontend for chatbot and image visualization ├── arduino.ino # Arduino sketch for vibration motor control ├── arduino.py # Python code to initialize and send PWM signals to Arduino ├── audio.py # Handles voice input (STT) and audio output (TTS) ├── chatbot.ipynb # Kaggle notebook hosting the BLIP-2 + Mistral 7B chatbot ├── chatbot.py # Interfaces with the hosted chatbot for visual question answering ├── colour_classified.pkl # Trained KNN model for color classification ├── colour_training_set.csv # Dataset used for training KNN model ├── colour_classification.ipynb # Notebook for training and generating the color classifier ├── config.py # Global constants and environment configurations ├── feedback.csv # Stores user feedback collected from the UI ├── feedback.py # Handles writing feedback to CSV ├── Presentation.pdf # Final project presentation slides ├── README.md # Project overview and documentation ├── Report.pdf # Detailed final report with methodology and findings ├── vision.py # Core computer vision logic: detection, depth map, and color classification └── main.py # Entry point for launching the application ``` </pre>
-You can paste this directly into your README, and it will rende
+## Project Structure 
+``` 
+├── assets/                      # Sample input painting, depth map, and color map images
+├── images/                      # Images for README
+├── sounds/                      # Instrumental sound files mapped to different colors
+├── app_ui.py                    # Gradio-based frontend for chatbot and image visualization
+├── arduino.ino                  # Arduino sketch for vibration motor control
+├── arduino.py                   # Python code to initialize and send PWM signals to Arduino
+├── audio.py                     # Handles voice input (STT) and audio output (TTS)
+├── chatbot.ipynb                # Kaggle notebook hosting the BLIP-2 + Mistral 7B chatbot
+├── chatbot.py                   # Interfaces with the hosted chatbot for visual question answering
+├── colour_classified.pkl        # Trained KNN model for color classification
+├── colour_training_set.csv      # Dataset used for training KNN model
+├── colour_classification.ipynb  # Notebook for training and generating the color classifier
+├── config.py                    # Global constants and environment configurations
+├── feedback.csv                 # Stores user feedback collected from the UI
+├── feedback.py                  # Handles writing feedback to CSV
+├── Presentation.pdf             # Final project presentation slides
+├── README.md                    # Project overview and documentation
+├── Report.pdf                   # Detailed final report with methodology and findings
+├── vision.py                    # Core computer vision logic: detection, depth map, and color classification
+└── main.py                      # Entry point for launching the application
+```
 
 ## System Overview
 
@@ -45,7 +62,7 @@ The system uses a camera to track finger movement, maps the finger position to a
 
 ### Diagram: System Architecture
 
-![System Architecture](images/sytem_overview.png)
+![System Architecture](images/system_overview.png)
 
 This diagram provides a high-level overview:
 - The user explores a canvas
