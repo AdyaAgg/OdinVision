@@ -9,10 +9,10 @@ This repository documents a complete, low-cost, explainable, and interactive sys
 
 This project was presented at the **HCI Across Borders Workshop** at the **ACM CHI Conference on Human Factors in Computing Systems (CHI 2025)**.
 
-**Presentation Link**: [View Poster (PDF/Image)](images/poster.png)  
-**Event**: HCI Across Borders Workshop  
-**Conference**: CHI 2025  
-**Location**: Yokohama, Japan  
+- **Poster**: [View Poster (Image)](images/poster.png)
+- **Event**: HCI Across Borders Workshop
+- **Conference**: CHI 2025
+- **Location**: Yokohama, Japan
 
 ---
 
@@ -44,6 +44,8 @@ Traditional artwork is inherently visual and largely inaccessible to visually im
 - Tracking finger motion in real-time
 - Supporting multimodal user interaction with conversational AI
 
+---
+
 ## Project Structure 
 ``` 
 ├── assets/                      # Sample input painting, depth map, and color map images
@@ -67,6 +69,7 @@ Traditional artwork is inherently visual and largely inaccessible to visually im
 ├── vision.py                    # Core computer vision logic: detection, depth map, and color classification
 └── main.py                      # Entry point for launching the application
 ```
+---
 
 ## System Overview
 
@@ -89,7 +92,7 @@ This diagram provides a high-level overview:
 
 ### Interaction Flow
 
-![Interaction Flow](images/system_design.jpeg)
+![Interaction Flow](images/user_flow.jpg)
 
 - User places their finger on the surface
 - The camera captures fingertip position via OpenCV + MediaPipe
@@ -150,15 +153,11 @@ Color is classified using KNN on RGB values. Each color maps to a musical note:
 
 ### Live Exploration Demo
 
-![User Interaction](images/user_flow.jpg)
-
-This shows a user exploring an image on paper with a webcam above, while receiving feedback through a fingertip sensor and headphones.
-
 ### Evaluation Participant
 
-![Blindfolded User with Glove](images/study_image.png)
-
 A participant using the glove during testing. The webcam tracks movement while the glove delivers haptic feedback. Audio is delivered via headphones.
+
+![Blindfolded User with Glove](images/study_image.png)
 
 ---
 
