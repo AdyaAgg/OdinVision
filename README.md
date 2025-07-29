@@ -1,8 +1,8 @@
 # OdinVision: Enhancing Art Perception for the Visually Impaired
 
-- **OdinVision** is a real-time, low-cost multimodal system for enabling individuals with visual impairments to interactively explore 2D visual artwork.
-- Integrates **computer vision**, **machine learning**, and **embedded systems** into a unified, explainable interface.
-- Focuses on translating **visual data (depth and color)** into **tactile and auditory feedback**.
+OdinVision is a multimodal system designed to enhance the art-viewing experience for individuals with visual impairments using computer vision, depth map generation, and real-time haptic and auditory feedback.
+
+This repository documents a complete, low-cost, explainable, and interactive system for **experiencing 2D visual art through sound and touch**.
 
 ### Technologies Used
 
